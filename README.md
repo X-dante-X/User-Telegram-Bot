@@ -1,2 +1,2 @@
-# usertg
- chat bot tg
+# Telegram
+ Chat bot for telegram
