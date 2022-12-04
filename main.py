@@ -1,5 +1,4 @@
-
-from pickle import TRUE
+import pyrogram
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 
@@ -12,9 +11,10 @@ import random
 
 
 
-
+api_id = 13482338
+api_hash = "f2839ec661fb8d7f318f3dec05b8bf8f"
  
-app = Client("my_account")
+app = Client("my_account", api_id, api_hash)
  
 # type
 @app.on_message(filters.command("type", prefixes=".") & filters.me)
@@ -34,18 +34,38 @@ def type(_, msg):
  
             msg.edit(tbp)
             sleep(0.05)
- 
         except FloodWait as e:
-            sleep(e.x)
+            sleep(1)
+
 # heart
 @app.on_message(filters.command("heart", prefixes=".") & filters.me)
 def heart(_, msg):
-    orig_text = msg.text.split(".heart", maxsplit=1)[1]
+    time = 1
+    msg.edit("❤️")
+    sleep(time)
+    msg.edit("🧡")
+    sleep(time)
+    msg.edit("💛")
+    sleep(time)
+    msg.edit("💚")
+    sleep(time)
+    msg.edit("💙")
+    sleep(time)
+    msg.edit("💜")
+    sleep(time)
+    msg.edit("🖤")
+    sleep(time)
+    msg.edit("🤍")
+    sleep(time)
+    msg.edit("❤️")
+#infinityheart
+@app.on_message(filters.command("infheart", prefixes=".") & filters.me)
+def infheart(_, msg):
     time = 3.42
-    while(TRUE):
-        try:
+    try:
+        while(True):
             msg.edit("❤️")
-            sleep(time) # 50 ms
+            sleep(time)
             msg.edit("🧡")
             sleep(time)
             msg.edit("💛")
@@ -55,19 +75,19 @@ def heart(_, msg):
             msg.edit("💙")
             sleep(time)
             msg.edit("💜")
-            sleep(time) # 50 ms
+            sleep(time)
             msg.edit("🖤")
             sleep(time)
             msg.edit("🤍")
             sleep(time)
-        except FloodWait as e:
-            sleep(e.x)
+    except FloodWait as e:
+            sleep(1)
 
 
 # font
 
 @app.on_message(filters.command("font", prefixes=".") & filters.me)
-def type(_, msg):
+def typee(_, msg):
     orig_text = msg.text.split(".font ", maxsplit=1)[1]
     text = orig_text
 #    text.setFont("Times", 8)
@@ -146,46 +166,7 @@ def change(_, msg):
     else:
         msg.edit(text)
 
-        except FloodWait as e:
-            sleep(e.x)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 app.run()
-
-
-
-
-
-
