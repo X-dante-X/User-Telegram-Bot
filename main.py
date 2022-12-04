@@ -21,13 +21,13 @@ app = Client("my_account", api_id, api_hash)
 def type(_, msg):
     orig_text = msg.text.split(".type ", maxsplit=1)[1]
     text = orig_text
-    tbp = "" # to be printed
+    tbp = ""
     typing_symbol = "▒"
  
     while(tbp != orig_text):
         try:
             msg.edit(tbp + typing_symbol)
-            sleep(0.05) # 50 ms
+            sleep(0.05)
  
             tbp = tbp + text[0]
             text = text[1:]
@@ -36,6 +36,36 @@ def type(_, msg):
             sleep(0.05)
         except FloodWait as e:
             sleep(1)
+
+
+#infinitytype
+@app.on_message(filters.command("inftype", prefixes=".") & filters.me)
+def infl(_, msg):
+    orig_text = msg.text.split(".inftype ", maxsplit=1)[1]
+    inftext = orig_text
+    text = orig_text
+    tbp = ""
+    typing_symbol = "▒"
+    while(True):
+        while(tbp != orig_text):
+            try:
+                msg.edit(tbp + typing_symbol)
+                sleep(0.5)
+        
+                tbp = tbp + text[0]
+                text = text[1:]
+        
+                msg.edit(tbp)
+                sleep(0.5)
+            except FloodWait as e:
+                sleep(8)
+        sleep(1)
+        tbp = ""
+        text = inftext
+        
+
+
+
 
 # heart
 @app.on_message(filters.command("heart", prefixes=".") & filters.me)
@@ -58,6 +88,7 @@ def heart(_, msg):
     msg.edit("🤍")
     sleep(time)
     msg.edit("❤️")
+
 #infinityheart
 @app.on_message(filters.command("infheart", prefixes=".") & filters.me)
 def infheart(_, msg):
@@ -81,7 +112,7 @@ def infheart(_, msg):
             msg.edit("🤍")
             sleep(time)
     except FloodWait as e:
-            sleep(1)
+            sleep(8)
 
 
 # font
